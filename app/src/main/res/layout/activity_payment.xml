@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F0F0F0">
+
+    <!-- Top Bar: Hamburger Icon, Title, and Home -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="20dp">
+
+        <!-- Hamburger Icon -->
+        <ImageView
+            android:id="@+id/hamburger_icon"
+            android:layout_width="81dp"
+            android:layout_height="53dp"
+            android:layout_marginEnd="10dp"
+
+            android:src="@drawable/logocar" />
+
+        <!-- Title: DriverAssistant -->
+
+        <!-- Home -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="DriverAssistant"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/home"
+            android:layout_width="114dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Refresh"
+            android:textColor="#0000FF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <!-- Help -->
+    </LinearLayout>
+
+    <!-- New TextView for Payment Messages -->
+    <TextView
+        android:id="@+id/paymentMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Source -->
+    <TextView
+        android:id="@+id/source_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Source:"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/source_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="?"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginHorizontal="20dp"
+        android:padding="8dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp" />
+
+    <!-- Destination -->
+    <TextView
+        android:id="@+id/destination_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Destination:"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/destination_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="?"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginHorizontal="20dp"
+        android:padding="8dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp" />
+
+    <!-- Fare -->
+    <TextView
+        android:id="@+id/fare_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fare:"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/fare_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100 Birr"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginHorizontal="20dp"
+        android:padding="8dp"
+        android:background="#FFFFFF"
+        android:elevation="2dp" />
+
+    <TextView
+        android:id="@+id/paymentStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="18sp"
+        android:layout_marginTop="20dp"
+        android:textColor="#000000" />
+
+    <Button
+        android:id="@+id/initiatePaymentButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Initiate Payment"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/paymentAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="8dp" />
+
+    <!-- Find My Car Button -->
+    <Button
+        android:id="@+id/findmycar"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:text="Find My Car"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#000000"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:padding="10dp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/loadingMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Processing payment..."
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Other UI elements here -->
+
+        <!-- Footer: Transaction History, Contact Me, Help -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#EEEEEE"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/transactionHistory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Transaction History"
+                android:textColor="#0000FF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/contactMe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Contact Me"
+                android:textColor="#0000FF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/help"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Help"
+                android:textColor="#0000FF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:gravity="center" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

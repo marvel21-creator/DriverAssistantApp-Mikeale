@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Chapa</string>
+    <string-array name="payment_methods">
+        <item>CbeBirr</item>
+        <item>TeleBirr</item>
+        <item>OtherPaymentMethod1</item>
+        <item>OtherPaymentMethod2</item>
+        <!-- Add more payment methods as needed -->
+    </string-array>
+    <string name="title_activity_maps">MapsActivity</string>
+</resources>
