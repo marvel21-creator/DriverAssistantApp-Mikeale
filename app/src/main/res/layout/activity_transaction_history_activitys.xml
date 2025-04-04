@@ -2,19 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
-
-    <!-- Home -->
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="DriverAssistant"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="50dp"/>
+    android:padding="16dp"
+    android:background="#F5F5F5">
 
     <!-- Filter Buttons Layout -->
     <LinearLayout
@@ -30,28 +19,52 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Today" />
+            android:text="Today"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"/>
 
         <Button
             android:id="@+id/filterWeek"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="This Week" />
+            android:text="This Week"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"/>
 
         <Button
             android:id="@+id/filterMonth"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="This Month" />
+            android:text="This Month"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"/>
 
         <Button
             android:id="@+id/filterYear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="This Year" />
+            android:text="This Year"
+            android:background="@color/colorPrimary"
+            android:textColor="#FFFFFF"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="4dp"/>
     </LinearLayout>
 
     <!-- Transaction ListView -->
@@ -61,5 +74,6 @@
         android:layout_height="match_parent"
         android:layout_below="@id/filterLayout"
         android:divider="@android:color/darker_gray"
-        android:dividerHeight="1dp"/>
+        android:dividerHeight="1dp"
+        android:padding="8dp"/>
 </RelativeLayout>

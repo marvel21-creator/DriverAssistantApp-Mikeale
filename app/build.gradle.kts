@@ -37,9 +37,13 @@ android {
 }
 
 dependencies {
+    implementation("com.stripe:stripe-android:21.6.0")
+    implementation("com.android.volley:volley:1.2.1")
+
     implementation(platform("com.google.firebase:firebase-bom:33.9.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.google.firebase:firebase-firestore")
+
     implementation ("androidx.recyclerview:recyclerview:1.4.0")
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")

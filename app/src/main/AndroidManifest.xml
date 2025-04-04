@@ -18,6 +18,18 @@
         android:theme="@style/Theme.Chapa"
         tools:targetApi="31">
         <activity
+            android:name=".PassengerSignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PassengerLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PassengerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DriverActivity"
+            android:exported="false" />
+        <activity
             android:name=".PaymentActivity"
             android:exported="false" />
         <activity

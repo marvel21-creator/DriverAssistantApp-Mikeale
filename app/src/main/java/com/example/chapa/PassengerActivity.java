@@ -3,6 +3,7 @@ package com.example.chapa;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,7 +41,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PaymentActivity extends AppCompatActivity {
+public class PassengerActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAnalytics mFirebaseAnalytics;
 
@@ -64,15 +65,39 @@ public class PaymentActivity extends AppCompatActivity {
     private String customerId, ephemeralKey, clientSecret;
     String SECRET_KEY = "sk_test_51QvRIL09YM7VAtiKdPc5YMNPW3Lnpy7tZNSJA06vgtjAdFynXlPrSE17OMnaMyZE1JGW7VQRLF0tabr0F1mECItw00nHQ4b3JQ";
     String PUBLISH_KEY = "pk_test_51QvRIL09YM7VAtiKrYR3yfSKfRRzG6GdyZE237adc0nvhg9r7IgmHmuxQtt9C6hjMwY6M45YgONvhmCgMMHN83sq00H2nqXAdI";
+    private Button loginButton;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        // Initialize SharedPreferences
+        sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+
+        // Initialize UI elements
+        loginButton = findViewById(R.id.loginButton);
+
+        // Check login state
+        boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);
+        updateLoginButton(isLoggedIn);
+
+        // Set up login button click listener
+        loginButton.setOnClickListener(v -> {
+            if (isLoggedIn) {
+                // Logout logic
+                logout();
+            } else {
+                // Redirect to login activity
+                Intent intent = new Intent(this, PassengerLoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
         TextView transactionHistoryTextView = findViewById(R.id.transactionHistory);
         transactionHistoryTextView.setOnClickListener(v -> showTransactionHistory());
+
         // Initialize Firebase and Stripe
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         db = FirebaseFirestore.getInstance();
@@ -86,12 +111,8 @@ public class PaymentActivity extends AppCompatActivity {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getCurrentLocation();
 
-        // Set up button listeners
-        Button loginButton = findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(v -> showRoleSelectionDialog());
-
         findMyCarButton.setOnClickListener(v -> {
-            Intent intent = new Intent(PaymentActivity.this, MapsActivity.class);
+            Intent intent = new Intent(PassengerActivity.this, MapsActivity.class);
             startActivity(intent);
         });
 
@@ -109,10 +130,34 @@ public class PaymentActivity extends AppCompatActivity {
         // Fetch payment details from Firestore
         fetchPaymentDetails();
     }
+
+    private void updateLoginButton(boolean isLoggedIn) {
+        if (isLoggedIn) {
+            loginButton.setText("Logout");
+        } else {
+            loginButton.setText("Login");
+        }
+    }
+
+    private void logout() {
+        // Update login state
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isLoggedIn", false);
+        editor.apply();
+
+        // Redirect to login activity
+        Intent intent = new Intent(PassengerActivity.this, PassengerLoginActivity.class);
+        startActivity(intent);
+        //finish(); // Close the current activity
+
+        Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+    }
+
     private void showTransactionHistory() {
         Intent intent = new Intent(this, TransactionHistoryActivitys.class);
         startActivity(intent);
     }
+
     private void showRoleSelectionDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select Your Role");
@@ -160,11 +205,16 @@ public class PaymentActivity extends AppCompatActivity {
 
     private void authenticateDriver(String username, String password) {
         db.collection("driver")
-                .whereEqualTo("password",password )
-                .whereEqualTo("username", username) // In production, use hashed passwords!
+                .whereEqualTo("username", username)
+                .whereEqualTo("password", password) // In production, use hashed passwords!
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                        // Save login state
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("isLoggedIn", true);
+                        editor.apply();
+
                         Toast.makeText(this, "Logged in as Driver", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(this, DriverActivity.class);
                         startActivity(intent);
@@ -206,7 +256,7 @@ public class PaymentActivity extends AppCompatActivity {
                         sourceTextView.setText(source);
                         destinationTextView.setText(destination);
                     } else {
-                        Toast.makeText(PaymentActivity.this, "Failed to fetch payment details!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PassengerActivity.this, "Failed to fetch payment details!", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -258,7 +308,7 @@ public class PaymentActivity extends AppCompatActivity {
                 },
                 error -> {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(PaymentActivity.this, "Failed to create customer", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PassengerActivity.this, "Failed to create customer", Toast.LENGTH_SHORT).show();
                 }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -286,7 +336,7 @@ public class PaymentActivity extends AppCompatActivity {
                 },
                 error -> {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(PaymentActivity.this, "Failed to get ephemeral key", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PassengerActivity.this, "Failed to get ephemeral key", Toast.LENGTH_SHORT).show();
                 }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -323,7 +373,7 @@ public class PaymentActivity extends AppCompatActivity {
                 },
                 error -> {
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(PaymentActivity.this, "Failed to get client secret", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PassengerActivity.this, "Failed to get client secret", Toast.LENGTH_SHORT).show();
                 }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {

@@ -69,4 +69,16 @@ public class PaymentTransaction implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "PaymentTransaction{" +
+                "transactionId='" + transactionId + '\'' +
+                ", amount=" + amount +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", timestamp=" + timestamp +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

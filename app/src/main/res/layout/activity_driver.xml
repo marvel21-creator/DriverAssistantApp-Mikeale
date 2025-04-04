@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F0F0F0">
+
+    <!-- Source -->
+    <TextView
+        android:id="@+id/source_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Source:"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:id="@+id/source_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Source"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Destination -->
+    <TextView
+        android:id="@+id/destination_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Destination:"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:id="@+id/destination_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Destination"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Fare -->
+    <TextView
+        android:id="@+id/fare_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fare:"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:id="@+id/fare_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Fare"
+        android:inputType="number"
+        android:textSize="18sp"
+        android:layout_marginTop="8dp" />
+
+    <!-- Update Button -->
+    <Button
+        android:id="@+id/update_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Details"
+        android:backgroundTint="#2196F3"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp" />
+
+    <!-- Transaction History Table -->
+    <TextView
+        android:id="@+id/successfulPaymentCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Successful Payments: 0"
+        android:textSize="18sp"
+        android:padding="16dp"/>
+    <TextView
+        android:id="@+id/transaction_history_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Transaction History"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginTop="20dp" />
+
+    <ListView
+        android:id="@+id/transaction_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
+</LinearLayout>
